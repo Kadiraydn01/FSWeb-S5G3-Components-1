@@ -103,7 +103,76 @@ const data = [
 
     <button class="expandButton">+</button>
   </div>
+*/
+// const generateButton = (btnText, iconClass) => {
+//   const button1 = document.createElement("button");
+//   button1.textContent = btnText;
 
+//   const icon1 = document.createElement("i");
+//   icon1.className = iconClass;
+
+//   button1.prepend(icon1);
+//   return button1;
+// };
+
+function haberYapici(
+  haberBasligi,
+  haberTarihi,
+  paragraf1,
+  paragraf2,
+  paragraf3
+) {
+  const div1 = document.createElement("div");
+  div1.setAttribute("class", "article");
+
+  const baslik = document.createElement("h2");
+  baslik.textContent = haberBasligi;
+
+  const tarih = document.createElement("p");
+  tarih.setAttribute("class", "tarih");
+  tarih.textContent = haberTarihi;
+
+  const birinciP = document.createElement("p");
+  birinciP.textContent = paragraf1;
+
+  const ikinciP = document.createElement("p");
+  ikinciP.textContent = paragraf2;
+
+  const ucuncuP = document.createElement("p");
+  ucuncuP.textContent = paragraf3;
+
+  const button2 = document.createElement("button");
+  button2.setAttribute("class", "expandButton");
+  button2.textContent = "+";
+  button2.addEventListener("click", (e) => {
+    div1.classList.toggle("article-open");
+  });
+  div1.append(baslik);
+  div1.append(tarih);
+  div1.append(birinciP);
+  div1.append(ikinciP);
+  div1.append(ucuncuP);
+  div1.append(button2);
+  return div1;
+}
+
+const haberler = data.map((i) => {
+  return haberYapici(
+    i.baslik,
+    i.tarih,
+    i.ilkParagraf,
+    i.ikinciParagraf,
+    i.ucuncuParagraf
+  );
+});
+
+const article = document.querySelector(".articles");
+
+haberler.forEach((haber) => {
+  article.append(haber);
+});
+
+/*
   Adım 2: Hala `haberYapici` içindeyiz, button.expandButton 'a bir click event dinleyici ekleyin.
   Bu dinleyici div.article öğesine 'article-open' class'ını ekleyip/çıkaracak (toogle).
 

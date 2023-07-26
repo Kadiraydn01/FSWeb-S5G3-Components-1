@@ -18,7 +18,35 @@ let menuElemanlari = [
       {tüm menü elemanları <li> içlerine}
     </ul>
   </div>
+  */
+function menuYapici(menuElemanlari) {
+  const menu = document.createElement("div");
+  menu.setAttribute("class", "menu");
 
+  const ul1 = document.createElement("ul");
+
+  for (let i = 0; i < menuElemanlari.length; i++) {
+    const li1 = document.createElement("li");
+    li1.textContent = menuElemanlari[i];
+    ul1.append(li1);
+  }
+  menu.append(ul1);
+
+  const menubutton = document.querySelector(".menu-button");
+
+  menubutton.addEventListener("click", (e) => {
+    menu.classList.toggle("menu--open");
+  });
+
+  return menu;
+}
+
+const menuOlustur = menuYapici(menuElemanlari);
+
+const header = document.querySelector(".header");
+
+header.append(menuOlustur);
+/*
   'menuYapici' fonksiyonu tek argümanı olarak bir menü elemanları dizisini alır (birinci parametre).
 
   Adım 2: Fonksiyonun içinde, dizideki her öğe için bir liste <li> öğesi oluşturarak dizi üzerinde yineleme yapın.
